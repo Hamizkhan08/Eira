@@ -1,10 +1,40 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
+  const bgRef = useRef(null)
+  const contentRef = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const heroHeight = window.innerHeight
+
+      if (scrollY > heroHeight) return // Skip once past hero
+
+      // Background: zooms in + moves down slowly
+      const scale = 1 + scrollY * 0.0003
+      const translateY = scrollY * 0.35
+      if (bgRef.current) {
+        bgRef.current.style.transform = `scale(${scale}) translateY(${translateY}px)`
+      }
+
+      // Content: fades out + moves up
+      const opacity = 1 - scrollY / (heroHeight * 0.6)
+      const contentY = scrollY * -0.2
+      if (contentRef.current) {
+        contentRef.current.style.transform = `translateY(${contentY}px)`
+        contentRef.current.style.opacity = Math.max(0, opacity)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <section className="hero" id="home">
-      <div className="hero-bg">
+      <div className="hero-bg" ref={bgRef}>
         <img 
           src="/images/facade.jpg" 
           alt="Eira Bistro Facade" 
@@ -13,7 +43,7 @@ const Hero = () => {
         <div className="hero-overlay"></div>
       </div>
       
-      <div className="hero-content">
+      <div className="hero-content" ref={contentRef}>
         <div className="hero-lotus animate-fade-up">
           <svg className="lotus-icon-hero" viewBox="0 0 80 70" fill="none">
             <path d="M40 8C40 8 29 22 29 35C29 48 40 58 40 58C40 58 51 48 51 35C51 22 40 8 40 8Z" stroke="currentColor" strokeWidth="1.2" fill="none"/>

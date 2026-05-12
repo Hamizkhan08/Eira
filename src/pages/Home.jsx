@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import About from '../components/About'
 import Gallery from '../components/Gallery'
@@ -19,7 +20,7 @@ const Home = () => {
           <h2 className="section-title">Artisanal Flavors</h2>
           <p className="section-subtitle">Discover our seasonal craft-led menu</p>
           <div className="menu-teaser-cta">
-            <a href="/menu" className="btn btn-primary">View Full Menu</a>
+            <Link to="/menu" className="btn btn-primary">View Full Menu</Link>
           </div>
         </div>
       </section>
