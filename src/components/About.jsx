@@ -1,15 +1,19 @@
 import React from 'react'
-import BotanicalDecoration from './BotanicalDecoration'
 
 const About = () => {
   return (
     <section className="about" id="about">
-      <div className="parchment-layer"></div>
-      <BotanicalDecoration side="left" />
-      <BotanicalDecoration side="right" />
+      {/* Signature Pattern Background */}
+      <div className="about-bg-overlay">
+        <img 
+          src="/images/about-bg.jpg" 
+          alt="Botanical Pattern" 
+          className="about-bg-img"
+        />
+      </div>
       
       <div className="about-inner reveal">
-        <div className="about-text">
+        <div className="about-text glass-panel" style={{ padding: '40px', borderRadius: '32px' }}>
           <span className="section-label">Our Story</span>
           <h2 className="section-title">A sanctuary of<br />slow discovery</h2>
           <p className="about-description">
@@ -20,7 +24,7 @@ const About = () => {
           </p>
         </div>
         <div className="about-image">
-          <div className="arch-frame">
+          <div className="arch-frame" style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.1)' }}>
             <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1200" alt="Eira Bistro & Cafe facade" loading="lazy" />
           </div>
         </div>
