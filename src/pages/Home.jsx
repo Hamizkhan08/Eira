@@ -14,7 +14,6 @@ const Home = () => {
       
       {/* Simplified Menu Teaser */}
       <section className="menu-teaser">
-        <div className="parchment-layer"></div>
         <div className="menu-teaser-inner reveal">
           <span className="section-label">Gastronomy</span>
           <h2 className="section-title">Artisanal Flavors</h2>

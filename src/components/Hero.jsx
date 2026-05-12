@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -24,8 +25,7 @@ const Hero = () => {
         <h1 className="hero-title animate-fade-up">eira</h1>
         <p className="hero-tagline animate-fade-up">Where calm meets craft</p>
         <div className="hero-ctas animate-fade-up">
-          <a href="#visit" className="btn btn-primary">reserve a table</a>
-          <a href="#menu" className="btn btn-outline">view menu</a>
+          <Link to="/menu" className="btn btn-outline">view menu</Link>
         </div>
       </div>
     </section>
