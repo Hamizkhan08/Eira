@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import MenuPage from './pages/MenuPage'
+import WhatsAppCTA from './components/WhatsAppCTA'
+import LoadingScreen from './components/LoadingScreen'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation()
@@ -37,21 +39,27 @@ const RevealObserver = () => {
 }
 
 function App() {
+  const [loading, setLoading] = useState(true)
+
   return (
-    <Router>
-      <div className="app-container">
-        <ScrollToTop />
-        <RevealObserver />
-        <Navbar />
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<MenuPage />} />
-        </Routes>
-        
-        <Footer />
-      </div>
-    </Router>
+    <>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      <Router>
+        <div className={`app-container ${loading ? 'app-hidden' : 'app-visible'}`}>
+          <ScrollToTop />
+          <RevealObserver />
+          <Navbar />
+          
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<MenuPage />} />
+          </Routes>
+          
+          <Footer />
+          <WhatsAppCTA />
+        </div>
+      </Router>
+    </>
   )
 }
 
